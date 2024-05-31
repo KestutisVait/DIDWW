@@ -22,18 +22,19 @@ const StyledButton = styled.div`
     box-shadow: inset 0 0px 10px rgb(23, 107, 188, 0.3);
     cursor: pointer;
     transition: 0.3s;
+    z-index: 2;
     &:hover {
         background-color: #669ed2;
         // filter: brightness(1.2);
     }
 `;
 const Shadow = styled.div`
-    width:85%;
-    height: 5px;
+    width: 83%;
+    height: 8px;
     background-color: #176BBC;
-    filter: blur(7px);
-    z-index: -1;
-    margin-top: -0.2rem;
+    filter: blur(10px);
+    z-index: 1;
+    margin-top: -0.3rem;
 `;
 
 const Button = (props) => {
@@ -42,9 +43,11 @@ const Button = (props) => {
 
     return (
         <Wrapper>
-            <StyledButton onClick={() => {
-                navigate(-1);
-                props.onClick();    
+            <StyledButton onClick={() => { 
+                navigate(-1)
+                const element = document.getElementById('viewport');
+                const viewportWidth = element.offsetWidth; 
+                viewportWidth !== 1441 && props.onClick()    
             }}>
                 Back to country list
             </StyledButton>

@@ -1,12 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
-position: fixed;
-    top: 20px;
-    left:50%;
-    transform: translateX(-50%);
+    position: absolute;
+    top: 22px;
+    left: 500px;
+    // transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,26 +24,26 @@ const StyledButton = styled.div`
     box-shadow: inset 0 0px 10px #EF6656);
     cursor: pointer;
     transition: 0.3s;
+    z-index: 2;
     &:hover {
         background-color: #ea8a7f;
         // filter: brightness(1.2);
     }
 `;
 const Shadow = styled.div`
-    width: 70%;
-    height: 5px;
+    width: 73%;
+    height: 8px;
     background-color: #EF6656;
-    filter: blur(7px);
-    z-index: -1;
-    margin-top: -0.2rem;
+    filter: blur(10px);
+    z-index: 1;
+    margin-top: -0.3rem;
 `;
 
 const Button = (props) => {
 
-
     return (
         <Wrapper>
-            <StyledButton  onClick={() => props.onClick()}>
+            <StyledButton onClick={() => props.onClick() }>
                 Resize viewport
             </StyledButton>
             <Shadow></Shadow>

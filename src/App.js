@@ -3,20 +3,23 @@ import { useEffect, useState } from 'react'
 import styled  from 'styled-components'
 import { useParams, Outlet } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
-import ResizeButton from './components/ResizeButton';
 
 const Wrapper = styled.div`
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     height: 100%;
-`;
-const Main = styled.section`
+    width: ${props => props.width || 'calc(1186px + 255px)'};
+    background-color: white;
+    // margin: 0 auto;
+    transition: 0.3s;
+    `;
+    const Main = styled.section`
     position: relative;
     flex: 1;
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    min-width: 1146px;
+    // flex-wrap: nowrap;
 `;
 const Title = styled.h3`
     padding: 20px;
@@ -26,29 +29,25 @@ const Title = styled.h3`
 const App = () => {
 
     const [countryName, setCountryName] = useState()
-    const [showRsize, setShowRsize] = useState(false)
+    const [mainWidth, setMainWidth] = useState("calc(1186px + 255px)")
 
     const handleCountryName = (name) => {
         setCountryName(name)
     }
-    const handleShowResize = () => {
-        setShowRsize(!showRsize)
-    }
-    const handleResize = () => {
-        console.log('handleResize');
-        const viewport = document.getElementById('viewport');
-        viewport.style.width = '500px'
 
-    };
+    const handleResize = () => {
+        const element = document.getElementById('viewport');
+        const viewportWidth = element.offsetWidth;
+        const newWidth = viewportWidth === 1441 ? `${viewportWidth - 437}px` : `${viewportWidth + 437}px`;
+        setMainWidth(newWidth);
+    }
 
     return (
-        <Wrapper>
+        <Wrapper id="viewport" width={mainWidth}>
             <Sidebar />
-            <Main id="viewport">
-                {/* {showRsize && <ResizeButton />} */}
-                {showRsize && <ResizeButton onClick={handleResize}/>}
+            <Main >
                 <Title>Browse {countryName ? countryName : "Countries"}</Title>
-                <Outlet context={{handleCountryName, handleShowResize}} />
+                <Outlet context={{handleCountryName, handleResize}} />
             </Main>
         </Wrapper>
 

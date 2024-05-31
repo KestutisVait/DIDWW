@@ -15,7 +15,7 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<App id="app"/>}>
         <Route path="/countries" element={<Countrys />} />
         <Route path="/:country" element={<Groups />} />
       </Route>

@@ -5,6 +5,8 @@ import styled  from 'styled-components'
 import { useParams, useOutletContext } from 'react-router-dom'
 import Group from '../components/Group'
 import BackButton from '../components/BackButton';
+import ResizeButton from '../components/ResizeButton';
+
 
 const Wrapper = styled.section`
     display: flex;
@@ -19,7 +21,7 @@ const Wrapper = styled.section`
 const Groups = (props) => {
 
 
-    const { handleCountryName, handleShowResize } = useOutletContext()
+    const { handleCountryName, handleResize } = useOutletContext()
     const country_id = useParams().country
 
 
@@ -42,7 +44,7 @@ const Groups = (props) => {
                         const groups = response.data.data;
                         console.log(groups);
                         groups.forEach(group => {
-                            groupList.push(group.id)
+                            groupList.push(group)
                         })
                         setGroups(groupList)
                     } )
@@ -50,15 +52,15 @@ const Groups = (props) => {
     }, [])
 
     const handleClick = () => {
-        handleShowResize()
+        handleResize()
     }
-
 
     return (
         <Wrapper>
+            <ResizeButton onClick={handleClick}/>
             <BackButton onClick={handleClick}/>
-            {/* {groups.length && groups.map((group, index) => <Group key={index} group_id={group} />)} */}
-            {groups.length && <Group group_id={groups[0]} />}
+            {groups.length > 0 && groups.map((group, index) => <Group key={index} group={group} />)}
+            {/* {groups.length > 0 && <Group group={groups[0]} />} */}
         </Wrapper>
     )
 }
