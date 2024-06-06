@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import styled  from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
+
 const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
@@ -38,7 +39,7 @@ const Country = () => {
     const headers = {
         headers: {
           'Content-Type': 'application/vnd.api+json',
-          'Api-Key': ''// api key here 
+          'Api-Key': ``// api key here 
         }
       };
 
