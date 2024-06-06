@@ -4,14 +4,21 @@ const Wrapper = styled.div`
     position: absolute;
     top: 22px;
     left: 500px;
-    // transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 175px;
+    &::after {
+        content: '';
+        display: block;
+        width: 73%;
+        height: 8px;
+        background-color: #EF6656;
+        filter: blur(10px);
+        z-index: 1;
+        margin-top: -0.3rem;
 `;
-
 const StyledButton = styled.div`
     background-color: #EF6656;
     color: white;
@@ -27,16 +34,7 @@ const StyledButton = styled.div`
     z-index: 2;
     &:hover {
         background-color: #ea8a7f;
-        // filter: brightness(1.2);
     }
-`;
-const Shadow = styled.div`
-    width: 73%;
-    height: 8px;
-    background-color: #EF6656;
-    filter: blur(10px);
-    z-index: 1;
-    margin-top: -0.3rem;
 `;
 
 const Button = (props) => {
@@ -46,7 +44,6 @@ const Button = (props) => {
             <StyledButton onClick={() => props.onClick() }>
                 Resize viewport
             </StyledButton>
-            <Shadow></Shadow>
         </Wrapper>
     )
 }

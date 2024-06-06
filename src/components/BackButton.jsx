@@ -8,8 +8,16 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     width: 175px;
+    &::after {
+        content: '';
+        display: block;
+        width: 83%;
+        height: 8px;
+        background-color: #176BBC;
+        filter: blur(10px);
+        z-index: 1;
+        margin-top: -0.3rem;
 `;
-
 const StyledButton = styled.div`
     background-color: #176BBC;
     color: white;
@@ -25,16 +33,7 @@ const StyledButton = styled.div`
     z-index: 2;
     &:hover {
         background-color: #669ed2;
-        // filter: brightness(1.2);
     }
-`;
-const Shadow = styled.div`
-    width: 83%;
-    height: 8px;
-    background-color: #176BBC;
-    filter: blur(10px);
-    z-index: 1;
-    margin-top: -0.3rem;
 `;
 
 const Button = (props) => {
@@ -51,7 +50,6 @@ const Button = (props) => {
             }}>
                 Back to country list
             </StyledButton>
-            <Shadow></Shadow>
         </Wrapper>
     )
 }

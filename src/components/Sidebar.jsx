@@ -7,8 +7,6 @@ const Wrapper = styled.section`
     padding: 20px;
     min-height: 100vh;
 `;
-
-
 const Sidebar = () => {
 
     return (
@@ -18,7 +16,6 @@ const Sidebar = () => {
             </svg>
             <p style={{color: 'white', margin:'20px 0'}}>*dummy sidebar</p>
         </Wrapper>
-
     )
 }
 

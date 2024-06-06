@@ -1,7 +1,7 @@
 import './App.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styled  from 'styled-components'
-import { useParams, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
 
 const Wrapper = styled.div`
@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     height: 100%;
     width: ${props => props.width || 'calc(1186px + 255px)'};
     background-color: white;
-    // margin: 0 auto;
     transition: 0.3s;
     `;
     const Main = styled.section`
@@ -19,7 +18,6 @@ const Wrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    // flex-wrap: nowrap;
 `;
 const Title = styled.h3`
     padding: 20px;
@@ -27,10 +25,9 @@ const Title = styled.h3`
 `;
 
 const App = () => {
-
     const [countryName, setCountryName] = useState()
     const [mainWidth, setMainWidth] = useState("calc(1186px + 255px)")
-
+    
     const handleCountryName = (name) => {
         setCountryName(name)
     }
@@ -50,7 +47,6 @@ const App = () => {
                 <Outlet context={{handleCountryName, handleResize}} />
             </Main>
         </Wrapper>
-
     )
 }
 

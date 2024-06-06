@@ -10,7 +10,7 @@ const Wrapper = styled.section`
     border-top: 1px solid #d2d2d2;
     margin: 0 20px; 
 `;
-const Subtitle = styled.h4`
+const Header = styled.h4`
     padding: 20px 0;
     height: 52px;
 `;
@@ -24,7 +24,6 @@ const CountrysTable = styled.div`
 const StyledLink = styled.p`
     text-decoration: none;
     color: #176BBC;
-    // padding: 0.5rem 0 ;
     margin: 0;
     width: 100%;
     line-height: 19px;
@@ -36,16 +35,17 @@ const StyledLink = styled.p`
 const Country = () => {
     const navigate = useNavigate();
     const [countries, setCountries] = useState([]);
-    const config = {
+    const headers = {
         headers: {
           'Content-Type': 'application/vnd.api+json',
-          'Api-Key': 'v92uf0kt3egjonxu2ffa6vf7btrxb3am' 
+          'Api-Key': ''// api key here 
         }
       };
 
     useEffect(() => {
-          Axios.get('https://sandbox-api.didww.com/v3/countries ', config)
+          Axios.get('https://sandbox-api.didww.com/v3/countries ', headers)
             .then ( response => {
+                // console.log(response.data.data);
                 const countryList = [];
                 const countries = response.data.data;
                 countries.forEach(country => {
@@ -58,10 +58,25 @@ const Country = () => {
 
     return (
         <Wrapper>
-            <Subtitle>Select a country to view available DID groups </Subtitle>
+            <Header>Select a country to view available DID groups </Header>
             <CountrysTable >
-                {countries.length > 0 && countries.map((country, index )=> country.name === "Lithuania" && <StyledLink onClick={() => navigate(`/${country.id}`)} key={index}>{country.name}</StyledLink>)}
-                {countries.length > 0 && countries.map((country, index )=> country.name !== "Lithuania" && <StyledLink key={index}>{country.name}</StyledLink>)}
+                {countries.length > 0 && countries.map((country, index ) => 
+                    country.name === "Lithuania" && 
+                    <StyledLink 
+                        onClick={() => navigate(`/${country.id}`)} 
+                        key={index}
+                    >
+                        {country.name}
+                    </StyledLink>
+                )}
+                {countries.length > 0 && countries.map((country, index )=> 
+                    country.name !== "Lithuania" && 
+                    <StyledLink 
+                        key={index}
+                    >
+                        {country.name}
+                    </StyledLink>
+                )}
             </CountrysTable>
         </Wrapper>
     )
